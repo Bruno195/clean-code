@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Bruno195/clean-code/issues"
   },
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.8"
+  },
   "homepage": "https://github.com/Bruno195/clean-code#readme"
 }
