@@ -1,4 +1,5 @@
 import { SignUpController } from './signup'
+
 describe('SignUp Controller', () => {
   test('should return status code 400 if name not provided', () => {
     // system under test
