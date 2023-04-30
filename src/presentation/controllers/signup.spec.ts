@@ -1,9 +1,13 @@
 import { SignUpController } from './signup'
 
+const makeSUT = (): SignUpController => {
+  return new SignUpController()
+}
+
 describe('SignUp Controller', () => {
   test('should return status code 400 if name not provided', () => {
     // system under test
-    const sut = new SignUpController()
+    const sut = makeSUT()
     // Body request method Post without name
     const httpRequest = {
       body: {
@@ -20,7 +24,7 @@ describe('SignUp Controller', () => {
 
   test('should return status code 400 if name not provided', () => {
     // system under test
-    const sut = new SignUpController()
+    const sut = makeSUT()
     // Body request method Post without name
     const httpRequest = {
       body: {
