@@ -148,6 +148,26 @@ describe('SignUp Controller', () => {
     expect(isValidSpy).toHaveBeenCalledWith('any_email@mail.com')
   })
 
+  test('should return 400 if password confirmation fails', () => {
+    const { sut } = makeSUT()
+
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'any_email@gmail.com',
+        password: 'any_password',
+        passwordConfirmation: 'invalid_password'
+      }
+    }
+
+    const httpResponse = sut.handle(httpRequest)
+
+    // toEqual compara objetos, toBe compara referências de objetos
+
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation fails'))
+  })
+
   test('should return status code 500 if EmailValidator throws', () => {
     const { sut, emailValidatorStub } = makeSUT()
 
