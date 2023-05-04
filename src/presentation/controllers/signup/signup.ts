@@ -1,6 +1,6 @@
 import { AddAccount, EmailValidator } from '../signup/signup-protocols'
 import { MissingParamError, InvalidParamError } from '../../errors'
-import { badRequest, serverError } from '../../helpers/http-helper'
+import { badRequest, ok, serverError } from '../../helpers/http-helper'
 import { HttpRequest, HttpResponse, Controller } from '../../protocols'
 
 export class SignUpController implements Controller {
@@ -11,7 +11,7 @@ export class SignUpController implements Controller {
     this.addAccount = addAccount
   }
 
-  handle (httpRequest: HttpRequest): HttpResponse {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
 
@@ -32,13 +32,13 @@ export class SignUpController implements Controller {
         return badRequest(new InvalidParamError('email'))
       }
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.addAccount.add({
+      const account = await this.addAccount.add({
         name,
         email,
         password
       })
 
-      return badRequest(new MissingParamError('any_param'))
+      return ok(account)
     } catch (error) {
       return serverError()
     }
