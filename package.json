@@ -4,9 +4,13 @@
   "description": "��#\u0000 \u0000c\u0000l\u0000e\u0000a\u0000n\u0000-\u0000c\u0000o\u0000d\u0000e\u0000\r\u0000 \u0000",
   "main": "console.js",
   "scripts": {
-    "test": "jest --passWithNoTests --watch",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
     "prepare": "husky install",
-    "test:staged": "jest --passWithNoTests"
+    "test:staged": "npm test --findRelatedTests",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:ci": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",
