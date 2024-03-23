@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-  roots: ['<rootDir>\\src'],
+  roots: ['<rootDir>/src'],
   collectCoverage: false,
   // eslint-disable-next-line no-useless-escape
   collectCoverageFrom: ['<rootDir>\\src\\**\\*.ts'],
